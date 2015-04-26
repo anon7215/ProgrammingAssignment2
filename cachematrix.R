@@ -1,8 +1,10 @@
-## Put comments here that give an overall description of what your functions do
+#### Put comments here that give an overall description of what your functions do
 
 ##  Pair of functions that cache the inverse of a matrix.
+##  Assumption : The matrix supplied as argument to the function is always invertible.
 
-## Write a short comment describing this function
+
+#### Write a short comment describing this function
 
 ##   makecachematrix function creates a special "vector", which is really a list containing a function to
 ##      set the value of the matrix             ##      get the value of the matrix
@@ -11,10 +13,11 @@
 
 
 makeCacheMatrix <- function(x = matrix()) {
+
         ## create a null matrix for storing inverse of the matrix
         inv <- NULL
         
-        ## Set the  matrix value using the set function
+        ## Set the  matrix value using the set function. inverse is set to null if a new matrix is set (changed)
         set <- function(y) {
                 x <<- y
                 inv <<- NULL
@@ -37,26 +40,26 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+#### Write a short comment describing this function
 
 ## cacheSolve function computes the inverse of a square matrix returned by makeCacheMatrix function. 
-## Assumption : The matrix supplied as argumnet to the function is always invertible.
+## Assumption : The matrix supplied as argument to the function is always invertible.
 ## If the inverse has already been calculated (and the matrix has not changed), 
-## then the cachesolve retrieve the inverse from the cache.
+## then the cachesolve retrieve the inverse from the cache value.
 
 cacheSolve <- function(x, ...) {
 
         ## Get the inverse of the matrix from the cache value using getinverse function from above.
         inv <- x$getinverse()
         
-        ## Check if the inverse matrix is not null.
-        ## if inverse is not null display the message and return inverse matrix
+        ## Check if the cache inverse matrix is not null.
+        ## if cache inverse is not null display the message and return inverse matrix
         if(!is.null(inv)) {
                 message("getting cached data")
                 return(inv)
         }
         
-        ## if inverse is null get the matrix from the cache value using get function from above. 
+        ## Get the matrix from the cache value using get function from above. Cache inverse is null
         data <- x$get()
         
         ## calculate inverse of the matrix
